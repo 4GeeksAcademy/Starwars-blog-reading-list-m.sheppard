@@ -23,26 +23,26 @@ export const CharacterCard = () => {
   }
   return (
     <div className="container d-flex col-10 overflow-auto mt-5 mx-auto">
-      {characters?.map((character, index) =>(
-      <div className="card" style={{ minWidth: "200px" }} key={index}>
-        {console.log(characters.name)}
-        <img src="..." className="card-img-top" alt="..." />
-        <div className="card-body">
-          <h5 className="card-title text-dark">{character.name}</h5>
-          <button
-            className="btn btn-primary"
-            onClick={() => handleFavorites(character.name)}
-          >
-            <i className="far fa-heart"></i>
-          </button>
-          <Link
-            to={"characterDescription/" + (index + 1)}
-            className="btn btn-primary"
-          >
-            Learn More
-          </Link>
+      {characters?.map((character, index) => (
+        <div className="card" style={{ minWidth: "200px" }} key={index}>
+          {console.log(character.name)}
+          <img src="..." className="card-img-top" alt="..." />
+          <div className="card-body">
+            <h5 className="card-title text-dark">{character.name}</h5>
+            <button
+              className="btn btn-primary"
+              onClick={() => handleFavorites(character.name)}
+            >
+              <i className="far fa-heart"></i>
+            </button>
+            <Link
+              to={"characterDescription/" + (index + 1)}
+              className="btn btn-primary"
+            >
+              Learn More
+            </Link>
+          </div>
         </div>
-      </div>
       ))}
     </div>
   );
