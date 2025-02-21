@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-
+import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const CharacterCard = () => {
   const { store, actions } = useContext(Context);
   const [characters, setCharacters] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
     async function fetchData() {
@@ -26,7 +27,11 @@ export const CharacterCard = () => {
       {characters?.map((character, index) => (
         <div className="card" style={{ minWidth: "200px" }} key={index}>
           {console.log(character.name)}
-          <img src="..." className="card-img-top" alt="..." />
+          <img
+            src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
+            className="card-img-top"
+            alt="..."
+          />
           <div className="card-body">
             <h5 className="card-title text-dark">{character.name}</h5>
             <button

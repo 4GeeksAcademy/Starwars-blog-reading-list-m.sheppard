@@ -36,6 +36,7 @@ const Layout = () => {
               path="/planetDescription/:id"
               element={<PlanetDescription />}
             />
+            f
             <Route
               path="/starShipDescription/:id"
               element={<StarShipDescription />}

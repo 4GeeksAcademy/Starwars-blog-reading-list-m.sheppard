@@ -2,24 +2,24 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-export const StarShipDescription = () => {
+export const PlanetDescription = () => {
   const { store, actions } = useContext(Context);
   const { id } = useParams();
-  const [starship, setStarShip] = useState({});
+  const [planet, setPlanet] = useState({});
   console.log("Old ID:", id);
 
   // Map old ID to new ID
   function findNewId(oldID) {
     const idMap = {
-      1: 2,
-      2: 3,
-      3: 5,
-      4: 9,
-      5: 11,
-      6: 12,
-      7: 13,
-      8: 15,
-      9: 17,
+      1: 1,
+      2: 2,
+      3: 3,
+      4: 4,
+      5: 5,
+      6: 6,
+      7: 7,
+      8: 8,
+      9: 9,
     };
     return idMap[oldID] || null;
   }
@@ -33,16 +33,16 @@ export const StarShipDescription = () => {
 
     async function fetchData() {
       try {
-        const res = await fetch(`https://swapi.tech/api/starships/${newID}`);
+        const res = await fetch(`https://swapi.tech/api/planets/${newID}`);
         if (!res.ok) throw new Error(`Error: ${res.status}`);
         const data = await res.json();
         if (data.result) {
-          setStarShip(data.result.properties); // Access properties directly
+          setPlanet(data.result.properties); // Access properties directly
         } else {
-          console.error("Starship data not found");
+          console.error("Planets data not found");
         }
       } catch (error) {
-        console.error("Error fetching starship data:", error);
+        console.error("Error fetching planets data:", error);
       }
     }
     fetchData();
@@ -52,22 +52,22 @@ export const StarShipDescription = () => {
     <div className="container">
       {newID ? (
         <>
-          <h1>{starship.name}</h1>
+          <h1>{planet.name}</h1>
           <p>
-            <strong>Model:</strong> {starship.model}
+            <strong>Climate:</strong> {planet.climate}
           </p>
           <p>
-            <strong>Manufacturer:</strong> {starship.manufacturer}
+            <strong>Diameter:</strong> {planet.diameter}
           </p>
           <p>
-            <strong>Crew:</strong> {starship.crew}
+            <strong>Gravity:</strong> {planet.gravity}
           </p>
           <p>
-            <strong>Passengers:</strong> {starship.passengers}
+            <strong>Terrain:</strong> {planet.terrain}
           </p>
         </>
       ) : (
-        <p>Invalid Starship ID</p>
+        <p>Invalid Planet ID</p>
       )}
     </div>
   );
